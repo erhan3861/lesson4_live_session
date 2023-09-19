@@ -68,3 +68,24 @@ def save_user():
         messagebox.showinfo("Başarılı", "Kullanıcı başarıyla kaydedildi.")
     except:
         messagebox.showerror("Hata", "Kullanıcı kayıt edilemedi!")
+
+# Kullanıcının veritabanına giriş işlemi
+def login():
+    username = username_entry.get()
+    password = password_entry.get()
+
+    # SQLAlchemy ile kullanıcı bilgilerini veritabanından sorgulama
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    user = session.query(User).filter_by(username=username).first()
+
+    if user and sha256_crypt.verify(password, user.password):
+        messagebox.showinfo("Başarılı", "Giriş başarılı!")
+        liste = app.place_slaves()
+        for l in liste:
+            l.destroy() # yok et
+                
+    else:
+        messagebox.showerror("Hata", "Kullanıcı adı veya şifre yanlış!")
+    session.close()
