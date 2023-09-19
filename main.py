@@ -18,4 +18,4 @@ class User(Base):
     username = Column(String, unique=True) # eşsiz
     password = Column(String)
 
-
+Base.metadata.create_all(engine)
