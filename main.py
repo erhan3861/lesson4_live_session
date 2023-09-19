@@ -11,4 +11,11 @@ from passlib.hash import sha256_crypt
 engine = create_engine('sqlite:///user.db', echo=False)
 Base = declarative_base()
 
+# Kullanıcı bilgilerini temsil eden veritabanı tablosu
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True) 
+    username = Column(String, unique=True) # eşsiz
+    password = Column(String)
+
 
