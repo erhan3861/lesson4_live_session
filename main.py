@@ -89,3 +89,14 @@ def login():
     else:
         messagebox.showerror("Hata", "Kullanıcı adı veya şifre yanlış!")
     session.close()
+
+# Kaydet ve Giriş butonları
+save_button = tk.Button(app, text="Kaydet", command=save_user, font=("Helvetica", 16))
+save_button.place(x=100,y=450)
+
+login_button = tk.Button(app, text="Giriş   ", command=login, font=("Helvetica", 16))
+login_button.place(x=250,y=450)
+
+
+# Tkinter uygulamasını başlatma
+app.mainloop()
