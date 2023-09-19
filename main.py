@@ -33,5 +33,16 @@ bg_image = ImageTk.PhotoImage(bg_image)
 bg_label = tk.Label(app, image=bg_image)
 bg_label.place(relwidth=1, relheight=1)
 
+# Giriş bilgileri giriş kutuları
+bg_color = "#ebe4d4"
+username_label = tk.Label(app, text="Kullanıcı Adı:", font=("Helvetica", 16), bg=bg_color)
+username_label.place(x=100,y=250)
 
+username_entry = tk.Entry(app, font=("Helvetica", 16), bg=bg_color)
+username_entry.place(x=100,y=300)
 
+password_label = tk.Label(app, text="Şifre:", font=("Helvetica", 16), bg=bg_color)
+password_label.place(x=100,y=350)
+
+password_entry = tk.Entry(app, show="*", font=("Helvetica", 16), bg=bg_color)
+password_entry.place(x=100,y=400)
