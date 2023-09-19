@@ -46,3 +46,25 @@ password_label.place(x=100,y=350)
 
 password_entry = tk.Entry(app, show="*", font=("Helvetica", 16), bg=bg_color)
 password_entry.place(x=100,y=400)
+
+
+# Kullanıcıyı veritabanına kaydetme işlemi
+def save_user():
+    username = username_entry.get()
+    password = password_entry.get()
+
+    # Şifreyi güvenli bir şekilde hashleme
+    hashed_password = sha256_crypt.hash(password)
+
+    # SQLAlchemy ile kullanıcı bilgilerini veritabanına kaydetme
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    try:
+        new_user = User(username=username, password=hashed_password)
+        session.add(new_user)
+        session.commit() # kayıt etti
+        session.close()
+        messagebox.showinfo("Başarılı", "Kullanıcı başarıyla kaydedildi.")
+    except:
+        messagebox.showerror("Hata", "Kullanıcı kayıt edilemedi!")
